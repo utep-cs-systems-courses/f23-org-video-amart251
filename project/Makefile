@@ -6,18 +6,16 @@ CFLAGS = -mmcu=${CPU} -I../timerLib -I../demos/h -L/opt/ti/msp430_gcc/include
 CC              = msp430-elf-gcc
 AS              = msp430-elf-as
 
-all:
-	(cd ../timerLib; make install)
-	(cd ../lcdLib; make install)
-	(cd ../wakedemo; make)
-	main.elf libs
-
-libs:
-	(cd ../demos && make)
-
+all: main.elf libs
 
 main.elf: ${COMMON_OBJECTS} buzzer.o ../timerLib/libTimer.a
-	${CC} ${CFLAGS} -o $@ $^
+    ${CC} ${CFLAGS} -o $@ $^
+
+libs:
+    (cd ../timerLib; make install)
+    (cd ../lcdLib; make install)
+    (cd ../wakedemo; make)
+
 
 load: main.elf
 	msp430loader.sh $^
