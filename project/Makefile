@@ -8,14 +8,13 @@ AS              = msp430-elf-as
 
 all: main.elf libs
 
-main.elf: ${COMMON_OBJECTS} buzzer.o ../timerLib/libTimer.a
-    ${CC} ${CFLAGS} -o $@ $^
-
 libs:
     (cd ../timerLib; make install)
     (cd ../lcdLib; make install)
     (cd ../wakedemo; make)
 
+main.elf: ${COMMON_OBJECTS} buzzer.o ../timerLib/libTimer.a
+	${CC} ${CFLAGS} -o $@ $^
 
 load: main.elf
 	msp430loader.sh $^
