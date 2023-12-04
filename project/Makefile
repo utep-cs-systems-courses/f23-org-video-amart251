@@ -12,7 +12,7 @@ libs:
 	(cd ../demos && make)
 
 
-main.elf: ${COMMON_OBJECTS} buzzer.o ../timerLib/libTimer.a
+main.elf: ${COMMON_OBJECTS} buzzer.o ../demos/lib/libTimer.a
 	${CC} ${CFLAGS} -o $@ $^
 
 load: main.elf
