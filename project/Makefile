@@ -9,9 +9,9 @@ AS              = msp430-elf-as
 all: main.elf libs
 
 libs:
-    (cd ../timerLib; make install)
-    (cd ../lcdLib; make install)
-    (cd ../wakedemo; make)
+	(cd ../timerLib; make install)
+	(cd ../lcdLib; make install)
+	(cd ../wakedemo; make)
 
 main.elf: ${COMMON_OBJECTS} buzzer.o ../timerLib/libTimer.a
 	${CC} ${CFLAGS} -o $@ $^
