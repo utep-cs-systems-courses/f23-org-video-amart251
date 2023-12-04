@@ -12,8 +12,8 @@ all:
 	(cd ../wakedemo; make)
 	main.elf libs
 
-#libs:
-#	(cd ../demos && make)
+libs:
+	(cd ../demos && make)
 
 
 main.elf: ${COMMON_OBJECTS} buzzer.o ../timerLib/libTimer.a
