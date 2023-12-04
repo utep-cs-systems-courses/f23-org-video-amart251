@@ -1,6 +1,6 @@
 COMMON_OBJECTS  = main.o
 CPU             = msp430g2553
-CFLAGS          = -mmcu=${CPU} -I../demos/h -L/opt/ti/msp430_gcc/include
+CFLAGS = -mmcu=${CPU} -I../timerLib -I../demos/h -L/opt/ti/msp430_gcc/include
 # LDFLAGS		= -L/opt/ti/msp430_gcc/include
 
 CC              = msp430-elf-gcc
