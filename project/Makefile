@@ -7,6 +7,9 @@ CC              = msp430-elf-gcc
 AS              = msp430-elf-as
 
 all: main.elf libs
+	(cd timerLib; make install)
+	(cd lcdLib; make install)
+	(cd wakedemo; make)
 
 libs:
 	(cd ../demos && make)
@@ -20,5 +23,10 @@ load: main.elf
 
 clean:
 	rm -f *.o *.elf
+	(cd timerLib; make clean)
+	(cd lcdLib; make clean)
+	(cd wakedemo; make clean)
+	rm -rf lib h
+	rm -rf doxygen_docs/*
 
 buzzer.c: buzzer.h
