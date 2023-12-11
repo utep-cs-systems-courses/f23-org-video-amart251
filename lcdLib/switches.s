@@ -1,77 +1,52 @@
-	.data
-	.align 2
-	.global state
+    .data
+    .align 2
+    .global state
 state:
-	.word 0
-jt:
-	.word default
-	.word case1
-	.word case2
-	.word case3
+    .word 0
 
-	.extern drawCarrot
-	.extern mouth
-	.extern happy
-	.extern sec_carrot
-	.extern sec_soap
-	.extern chewing
-	.extern drawSoap
-	.extern open_eyes
-	.extern soap
-	.extern carrot
-	.extern ball
-	.extern drawBall
-	.extern sec_ball
-	.extern sleep
-	.extern drawSleep
-	.extern sec_sleep
-	.extern drawOpenSmile
-	
-	.text
-	.align 2
-	.global state_select
+    .text
+    .align 2
+    .global state_select
 state_select:
-	cmp #4, r12
-	jc default
-	mov #0, &soap
-	add r12, r12
-	mov jt(r12), r0
+    cmp #4, r12
+    jc default_state
 
-case1:
-	mov #1, &state
-	mov #3, &mouth
-	mov #1, &happy
-	mov #1, &carrot
-	mov #0, &sec_carrot
-	call #drawCarrot
-	jmp esac
-case2:
-	mov #2, &state
-	mov #2, &mouth
-	mov #1, &happy
-	mov #1, &soap
-	mov #0, &sec_soap
-	mov #0, &open_eyes
-	call #drawSoap
-	jmp esac
-case3:
-	mov #3, &state
-	mov #2, &mouth
-	mov #1, &happy
-	mov #1, &ball
-	mov #0, &sec_ball
-	call #drawBall
-	call #drawOpenSmile
-	jmp esac
-default:	
-	mov #4, &state
-	mov #3, &mouth
-	mov #0, &open_eyes
-	mov #1, &happy
-	mov #1, &sleep
-	mov #0, &sec_sleep
-	call #drawSleep
-	jmp esac
+    ; Reset state to 0
+    mov #0, &state
 
-esac:
-	pop r0
+    ; Check which button was pressed and update state accordingly
+    cmp #1, r12
+    jeq button1_pressed
+    cmp #2, r12
+    jeq button2_pressed
+    cmp #3, r12
+    jeq button3_pressed
+    cmp #4, r12
+    jeq button4_pressed
+
+    jmp update_state
+
+button1_pressed:
+    mov #1, &state
+    jmp update_state
+
+button2_pressed:
+    mov #2, &state
+    jmp update_state
+
+button3_pressed:
+    mov #3, &state
+    jmp update_state
+
+button4_pressed:
+    mov #4, &state
+    jmp update_state
+
+default_state:
+    ; Default action if no valid button is pressed
+    mov #0, &state
+
+update_state:
+    ; Update the state based on button press
+    ; Additional code can be added here if needed
+    ret

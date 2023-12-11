@@ -37,9 +37,25 @@ void switch_interrupt_handler()
 {
   char p2val = switch_update_interrupt_sense();
   switches = ~p2val & SWITCHES;
-  sec_noBtnPress = -1250;
-  btnPress = 1;
   redrawScreen = 1;
+
+  switch(switches){
+    case SW1:
+      drawOverworld();
+      melody2
+      break;
+    case SW2:
+      drawSecret();
+      break;
+    case SW3:
+      drawGanon();
+      //play melody
+      break;
+    case SW4:
+      drawTriforce();
+      melody2();
+      break;
+  }
 }
 
 void __interrupt_vec(PORT2_VECTOR) Port_2()

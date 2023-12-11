@@ -10,7 +10,8 @@
 #include "switches.h"
 #include "notes.h"
 #include "melodies.h"
-#include 
+#include "globals.h"
+#include "timing.h"
 
 #define LED BIT6
 
@@ -30,13 +31,7 @@ main()
   drawTitle();
   drawString8x12(20, 20, "Zelda", COLOR_RED, COLOR_YELLOW);
 
-  while(1)
-    {
-      
-      buzzer_set_period(1000); //single tone
-      
-      //buzzer_set_period(0); //stop the buzzer
-    }
+
   
   
 }
