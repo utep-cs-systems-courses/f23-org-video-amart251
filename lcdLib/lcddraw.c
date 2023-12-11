@@ -115,3 +115,87 @@ void drawRectOutline(u_char colMin, u_char rowMin, u_char width, u_char height,
   fillRectangle(colMin + width, rowMin, 1, height, colorBGR);
 }
 
+void drawTitle() //default screen
+{
+  fillRectangle(0,0,0,0, COLOR_GREEN);//leaf border
+  fillRectangle(0,0,0,0, COLOR_WHITE);//sword
+  fillRectangle(0,0,0,0, COLOR_BEIGE);//center of leaf border
+  fillRectangle(0,0,0,0, COLOR_GRAY);//bottom of cliff
+  fillRectangle(0,0,0,0, COLOR_GRAY);//left of cliff
+  fillRectangle(0,0,0,0, COLOR_GRAY); //right of cliff
+  fillRectangle(0,0,0,0, COLOR_LIGHT_BLUE);//waterfall
+}
+
+void drawHUD(int kind)
+{
+  if (kind == 1){
+  fillRectangle(0,0,0,0, COLOR_BLACK);//top hud
+  fillRectangle(0,0,0,0, COLOR_GRAY);//map
+  fillRectangle(0,0,0,0, COLOR_GRAY);//item counters
+  fillRectangle(0,0,0,0, COLOR_BLUE);//B A slots
+  fillRectangle(0,0,0,0, COLOR_RED);//hearts 3
+  }
+
+  if (kind ==2){
+  fillRectangle(0,0,0,0, COLOR_BLACK);//top hud
+  fillRectangle(0,0,0,0, COLOR_BLUE);//map
+  fillRectangle(0,0,0,0, COLOR_GRAY);//item counters
+  fillRectangle(0,0,0,0, COLOR_BLUE);//B A slots
+  fillRectangle(0,0,0,0, COLOR_RED);//hearts large
+  }
+}
+
+void drawOverworld() // button 1
+{
+  drawHUD(1);
+
+  fillRectangle(0,0,0,0, COLOR_GREEN); // grass
+  fillRectangle(0,0,0,0, COLOR_BEIGE);//horizontal dirt
+  fillRectangle(0,0,0,0, COLOR_BEIGE);//vertical dirt
+  fillRectangle(0,0,0,0, COLOR_BEIGE);//bottom dirt
+  fillRectangle(0,0,0,0, COLOR_BEIGE);//left dirt leading to cave
+  fillRectangle(0,0,0,0, COLOR_BLACK);//cave
+
+  fillRectangle(0,0,0,0, COLOR_GREEN);//link
+}
+
+void drawSecret() //button 2
+{
+  drawHUD(1);
+
+  fillRectangle(0,0,0,0, COLOR_BROWN);//cave walls
+  fillRectangle(0,0,0,0, COLOR_BLACK);//black middle
+  fillRectangle(0,0,0,0, COLOR_BLACK);//cave entrance
+
+  fillRectangle(0,0,0,0, COLOR_GREEN);//link
+  fillRectangle(0,0,0,0, COLOR_RED);//moblin
+  fillRectangle(0,0,0,0, COLOR_ORANGE_RED);//flame left
+  fillRectangle(0,0,0,0, COLOR_ORANGE_RED);//flame right
+}
+
+void drawGanon() //button 3
+{
+  drawHUD(2);
+
+  fillRectangle(0,0,0,0, COLOR_GRAY);//gray walls
+  fillRectangle(0,0,0,0, COLOR_BLACK);//black pit
+  fillRectangle(0,0,0,0, COLOR_GRAY);//"skull" top
+  fillRectangle(0,0,0,0, COLOR_GRAY);//"skull" bottom
+  fillRectangle(0,0,0,0, COLOR_GRAY);//"skull" eye left
+  fillRectangle(0,0,0,0, COLOR_GRAY);//"skull" eye right
+
+  fillRectangle(0,0,0,0, COLOR_LIGHT_BLUE);// ganon
+  fillRectangle(0,0,0,0, COLOR_ORANGE_RED);// link
+
+}
+
+void drawTriforce() // button 4
+{
+  drawHUD(2);
+
+  fillRectangle(0,0,0,0, COLOR_ORANGE_RED);// zelda left
+  fillRectangle(0,0,0,0, COLOR_YELLOW);// triforce left
+  fillRectangle(0,0,0,0, COLOR_ORANGE_RED);// zelda right
+  fillRectangle(0,0,0,0, COLOR_YELLOW);// triforce right
+
+}

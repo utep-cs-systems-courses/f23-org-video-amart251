@@ -2,30 +2,43 @@
  *  \brief A simple demo that draws a string and square
  */
 
+#include <msp430.h>
 #include <libTimer.h>
 #include "lcdutils.h"
 #include "lcddraw.h"
 #include "buzzer.h"
+#include "switches.h"
+#include "notes.h"
+#include "melodies.h"
+#include 
+
+#define LED BIT6
+
 
 /** Initializes everything, clears the screen, draws "hello" and a square */
 int
 main()
 {
+  P1DIR |= LED;
+  P1OUT |= LED;
   configureClocks();
   lcd_init();
   buzzer_init();
-
+  switch_init();
+  enableWDTInterrupts();
   u_char width = screenWidth, height = screenHeight;
+  drawTitle();
+  drawString8x12(20, 20, "Zelda", COLOR_RED, COLOR_YELLOW);
 
-  clearScreen(COLOR_BLUE);
-
-  drawString5x7(20,20, "hello", COLOR_GREEN, COLOR_RED);
+  while(1)
+    {
+      
+      buzzer_set_period(1000); //single tone
+      
+      //buzzer_set_period(0); //stop the buzzer
+    }
   
-
-  fillRectangle(30,30, 60, 60, COLOR_ORANGE);
-
-  buzzer_set_period(1000); //single tone
-
-  //buzzer_set_period(0); //stop the buzzer
   
 }
+
+
