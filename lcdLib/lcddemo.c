@@ -5,6 +5,7 @@
 #include <libTimer.h>
 #include "lcdutils.h"
 #include "lcddraw.h"
+#include "buzzer.h"
 
 /** Initializes everything, clears the screen, draws "hello" and a square */
 int
@@ -12,12 +13,19 @@ main()
 {
   configureClocks();
   lcd_init();
+  buzzer_init();
+
   u_char width = screenWidth, height = screenHeight;
 
   clearScreen(COLOR_BLUE);
 
   drawString5x7(20,20, "hello", COLOR_GREEN, COLOR_RED);
+  
 
   fillRectangle(30,30, 60, 60, COLOR_ORANGE);
+
+  buzzer_set_period(1000); //single tone
+
+  //buzzer_set_period(0); //stop the buzzer
   
 }

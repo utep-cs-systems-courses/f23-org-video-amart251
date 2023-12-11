@@ -22,8 +22,11 @@ install: libLcd.a
 clean:
 	rm -f libLcd.a *.o *.elf
 
-lcddemo.elf: lcddemo.o libLcd.a 
-	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@ -lTimer 
+lcddemo.elf: lcddemo.o libLcd.a wdt_handler.o buzzer.o
+	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@ -lTimer -1lcd
 
 load: lcddemo.elf
 	msp430loader.sh $^
+
+wdt_handler.o: wdt_handler.s
+buzzer.o: buzzer.c buzzer.h
